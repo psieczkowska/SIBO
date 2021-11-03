@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="primary_text_color">#363A43</color>
+    <color name="secondary_text_color">#7A8089</color>
+    <color name="colorPrimary">#EA80A4</color>
+    <color name="colorAccent">#E91E63</color>
+    <color name="colorPrimaryDark">#8F4760</color>
+    <color name="snackbar_error_background">#FF3535</color>
+    <color name="divider_color">#EAEAEA</color>
+    <color name="color_zakazany">#F3BCBC</color>
+    <color name="color_malo">#B5F1B7</color>
+    <color name="color_srednio">#FDF7BF</color>
+    <color name="color_mocno">#FFDDAC</color>
+
+
+</resources>

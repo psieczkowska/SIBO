@@ -7,5 +7,11 @@
     <item android:id="@+id/nav_sign_out"
         android:icon="@drawable/ic_nav_sign_out"
         android:title="@string/nav_sign_out"/>
+    <item android:id="@+id/nav_food"
+        android:icon="@drawable/ic_nav_food"
+        android:title="@string/dziennik_posi_k_w"/>
+    <item android:id="@+id/nav_doctors"
+        android:icon="@drawable/ic_nav_doctors"
+        android:title="@string/baza_lekarzy_i_dietetyk_w"/>
 </group>
 </menu>

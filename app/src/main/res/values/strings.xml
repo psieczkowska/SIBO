@@ -16,4 +16,6 @@
     <string name="image_contentDescription">image</string>
     <string name="nav_my_profile">Mój profil</string>
     <string name="nav_sign_out">Wyloguj się</string>
+    <string name="baza_lekarzy_i_dietetyk_w">Baza lekarzy i dietetyków</string>
+    <string name="dziennik_posi_k_w">Dziennik posiłków</string>
 </resources>

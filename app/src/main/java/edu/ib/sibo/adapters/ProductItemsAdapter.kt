@@ -36,7 +36,7 @@ open class ProductItemsAdapter(private val context: Context, private var list: A
             if (model.fermentation == "średnio fermentujące")
                 holder.itemView.setBackgroundColor(getColor(context, R.color.color_srednio))
             if (model.fermentation == "mocno fermentujące")
-                holder.itemView.setBackgroundColor(getColor(context, R.color.color_srednio))
+                holder.itemView.setBackgroundColor(getColor(context, R.color.color_mocno))
 
             holder.itemView.setOnClickListener {
                 //TODO on click - product

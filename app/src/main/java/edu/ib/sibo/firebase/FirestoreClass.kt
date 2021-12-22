@@ -6,12 +6,9 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import edu.ib.sibo.activities.MyProfileActivity
-import edu.ib.sibo.activities.SignInActivity
-import edu.ib.sibo.activities.SignUpActivity
 import edu.ib.projectmanapp.models.User
 import edu.ib.projectmanapp.utils.Constants
-import edu.ib.sibo.activities.MainActivity
+import edu.ib.sibo.activities.*
 import edu.ib.sibo.models.Product
 
 
@@ -34,6 +31,19 @@ class FirestoreClass {
             }
     }
 
+    fun registerProduct(activity: AddProductActivity, productInfo: Product) {
+        mFireStore.collection(Constants.PRODUCTS)
+            .add(productInfo)
+            .addOnSuccessListener {
+                Toast.makeText(activity, "Zrobione", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener { e ->
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error writing document"
+                )
+            }
+    }
+
 
     fun getCurrentUserId(): String {
         var currentUser = FirebaseAuth.getInstance().currentUser
@@ -45,7 +55,7 @@ class FirestoreClass {
         return currentUserID
     }
 
-    fun updateUserProfileData(activity: MyProfileActivity, userHashMap: HashMap<String, Any>){
+    fun updateUserProfileData(activity: MyProfileActivity, userHashMap: HashMap<String, Any>) {
         mFireStore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .update(userHashMap)
@@ -53,11 +63,11 @@ class FirestoreClass {
                 Log.i(activity.javaClass.simpleName, "Profile Data updated")
                 Toast.makeText(activity, "Profile updated successfully!", Toast.LENGTH_SHORT).show()
                 activity.profileUpdateSuccess()
-            }.addOnFailureListener {
-                e ->
+            }.addOnFailureListener { e ->
                 activity.hideProgressDialog()
                 Log.e(activity.javaClass.simpleName, "Error while creating a board")
-                Toast.makeText(activity, "Error when updating the profile", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Error when updating the profile", Toast.LENGTH_SHORT)
+                    .show()
             }
     }
 
@@ -75,7 +85,7 @@ class FirestoreClass {
                     is MainActivity -> {
                         activity.updateNavigationUserDetails(loggedInUser)
                     }
-                    is MyProfileActivity ->{
+                    is MyProfileActivity -> {
                         activity.setUserDataInUI(loggedInUser)
                     }
                 }
@@ -100,30 +110,31 @@ class FirestoreClass {
 
 
     fun getProductsList(activity: MainActivity) {
-
+        val productsList: ArrayList<Product> = ArrayList()
         mFireStore.collection(Constants.PRODUCTS)
             .get() // Will get the documents snapshots.
             .addOnSuccessListener { document ->
                 // Here we get the list of boards in the form of documents.
                 Log.e(activity.javaClass.simpleName, document.documents.toString())
-                val boardsList: ArrayList<Product> = ArrayList()
+
 
                 // A for loop as per the list of documents to convert them into Boards ArrayList.
                 for (i in document.documents) {
 
-                    val board = i.toObject(Product::class.java)!!
+                    val product = i.toObject(Product::class.java)!!
                     //board.documentId = i.id
 
-                    boardsList.add(board)
+                    productsList.add(product)
                 }
 
                 // Here pass the result to the base activity.
-                activity.populateProductsListToUI(boardsList)
+                activity.populateProductsListToUI(productsList)
             }
             .addOnFailureListener { e ->
 
                 activity.hideProgressDialog()
                 Log.e(activity.javaClass.simpleName, "Error while creating a board.", e)
             }
+
     }
 }

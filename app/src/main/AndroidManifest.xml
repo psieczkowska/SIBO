@@ -13,9 +13,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SIBO">
-        <activity android:name=".activities.AddProductActivity"
+        <activity
+            android:name=".activities.DoctorsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SIBO.NoActionBar"/>
+            android:theme="@style/Theme.SIBO.NoActionBar" />
+        <activity
+            android:name=".activities.FoodActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SIBO.NoActionBar" />
+        <activity
+            android:name=".activities.AddProductActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SIBO.NoActionBar" />
         <activity
             android:name=".activities.MyProfileActivity"
             android:screenOrientation="portrait"

@@ -9,7 +9,11 @@ import com.google.firebase.firestore.SetOptions
 import edu.ib.projectmanapp.models.User
 import edu.ib.projectmanapp.utils.Constants
 import edu.ib.sibo.activities.*
+import edu.ib.sibo.models.Meal
 import edu.ib.sibo.models.Product
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 class FirestoreClass {
@@ -41,6 +45,56 @@ class FirestoreClass {
                     activity.javaClass.simpleName,
                     "Error writing document"
                 )
+            }
+    }
+
+//    fun registerMeal(activity: FoodActivity, mealInfo: Meal) {
+//        mFireStore.collection(Constants.MEALS)
+//            .add(mealInfo)
+//            .addOnSuccessListener {
+//                Toast.makeText(activity, "Posiłek został dodany", Toast.LENGTH_SHORT).show()
+//            }.addOnFailureListener { e ->
+//                Log.e(
+//                    activity.javaClass.simpleName,
+//                    "Error writing document"
+//                )
+//            }
+//    }
+
+    fun createMeal(activity: FoodActivity, meal: Meal) {
+        mFireStore.collection(Constants.MEALS)
+            .document()
+            .set(meal, SetOptions.merge())
+            .addOnSuccessListener {
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Board created successfully"
+                )
+                Toast.makeText(activity, "Board created successfully", Toast.LENGTH_LONG).show()
+                activity.hideProgressDialog()
+                // TODO  activity.mealCreatedSuccessfully()
+            }.addOnFailureListener { exception ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while creating a board.", exception)
+            }
+    }
+
+    fun getMealsList(activity: FoodActivity, date: String) {
+        mFireStore.collection(Constants.MEALS)
+            .whereEqualTo(Constants.THIS_USER_ID, getCurrentUserId())
+            .get()
+            .addOnSuccessListener { document ->
+                Log.i(activity.javaClass.simpleName, document.documents.toString())
+                val mealsList: ArrayList<Meal> = ArrayList()
+                for (i in document.documents) {
+                    val meal = i.toObject(Meal::class.java)!!
+                    mealsList.add(meal)
+                }
+
+                activity.populateMealsListToUI(mealsList, date)
+            }.addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while creating a boards list")
             }
     }
 

@@ -12,11 +12,15 @@
     tools:context=".activities.MainActivity">
 
     <SearchView
-        android:id="@+id/searchView"
+        android:id="@+id/search_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
-        android:queryHint="Wyszukaj"  />
+        android:queryHint="Wyszukaj"
+        android:layout_marginBottom="10dp"
+        android:focusable="false"
+
+        />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

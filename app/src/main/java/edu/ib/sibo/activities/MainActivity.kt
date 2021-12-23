@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.ListView
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -43,6 +40,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         fab_create_board.setOnClickListener {
             startActivity(Intent(this, AddProductActivity::class.java))
         }
+
     }
 
 
@@ -116,6 +114,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 startActivity(intent)
                 finish()
             }
+
+            R.id.nav_food -> {
+                val intent = Intent(this, FoodActivity::class.java)
+                startActivity(intent)
+
+            }
+
+
+            R.id.nav_doctors -> {
+                val intent = Intent(this, DoctorsActivity::class.java)
+                startActivity(intent)
+
+            }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
@@ -125,6 +136,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     fun populateProductsListToUI(productsList: ArrayList<Product>) {
         hideProgressDialog()
         if (productsList.size > 0) {
+            //productList = productsList
             rv_products_list.visibility = View.VISIBLE
             tv_no_products_available.visibility = View.GONE
 
@@ -133,6 +145,20 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
             val adapter = ProductItemsAdapter(this@MainActivity, productsList)
             rv_products_list.adapter = adapter
+
+            search_product.setOnQueryTextListener(
+                object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String): Boolean {
+                        adapter.filter(query)
+                        return true
+                    }
+
+                    override fun onQueryTextChange(newText: String): Boolean {
+                        adapter.filter(newText)
+                        return true
+                    }
+                }
+            )
         } else {
             rv_products_list.visibility = View.GONE
             tv_no_products_available.visibility = View.VISIBLE

@@ -1,4 +1,5 @@
 package edu.ib.sibo.activities
+
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -29,32 +30,40 @@ open class BaseActivity : AppCompatActivity() {
     }
 
 
-    fun hideProgressDialog(){
+    fun hideProgressDialog() {
         mProgressDialog.dismiss()
     }
 
 
-    fun getCurrentUserID(): String{
+    fun getCurrentUserID(): String {
         return FirebaseAuth.getInstance().currentUser!!.uid
     }
 
-    fun doubleBackToExit(){
-        if(doubleBackToExitPressOnce){
+    fun doubleBackToExit() {
+        if (doubleBackToExitPressOnce) {
             super.onBackPressed()
             return
         }
         this.doubleBackToExitPressOnce = true
-        Toast.makeText(this, resources.getString(R.string.please_click_back_again_to_exit), Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            this,
+            resources.getString(R.string.please_click_back_again_to_exit),
+            Toast.LENGTH_SHORT
+        ).show()
 
-        Handler().postDelayed({doubleBackToExitPressOnce = false}, 2000)
+        Handler().postDelayed({ doubleBackToExitPressOnce = false }, 2000)
     }
 
-    fun showErrorSnackBar(message: String){
-        val snackBar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
+    fun showErrorSnackBar(message: String) {
+        val snackBar =
+            Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
         val snackBarView = snackBar.view
-        snackBarView.setBackgroundColor(ContextCompat.getColor(this,
-            R.color.snackbar_error_background
-        ))
+        snackBarView.setBackgroundColor(
+            ContextCompat.getColor(
+                this,
+                R.color.snackbar_error_background
+            )
+        )
         snackBar.show()
     }
 }

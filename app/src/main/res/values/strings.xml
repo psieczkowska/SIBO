@@ -18,4 +18,18 @@
     <string name="nav_sign_out">Wyloguj się</string>
     <string name="baza_lekarzy_i_dietetyk_w">Baza lekarzy i dietetyków</string>
     <string name="dziennik_posi_k_w">Dziennik posiłków</string>
+    <string name="breakfast">Śniadanie</string>
+    <string name="lunch">II śniadanie</string>
+    <string name="dinner">Obiad</string>
+    <string name="snack">Przekąska</string>
+    <string name="supper">Kolacja</string>
+    <string name="add_meal">Dodaj posiłek</string>
+    <string name="Meal_name">Nazwa posiłku</string>
+    <string name="Meal_amount">Ilość</string>
+    <string name="Date">Data</string>
+    <string name="add">DODAJ</string>
+    <string name="cancel">ANULUJ</string>
+    <string name="choose_color">Wybierz kolor: </string>
+    <string name="Time">Czas</string>
+    <string name="no_meal_available">Jeszcze nic nie zjadłeś</string>
 </resources>

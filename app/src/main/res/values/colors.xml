@@ -9,10 +9,10 @@
     <color name="colorPrimaryDark">#8F4760</color>
     <color name="snackbar_error_background">#FF3535</color>
     <color name="divider_color">#EAEAEA</color>
-    <color name="color_zakazany">#F3BCBC</color>
-    <color name="color_malo">#B5F1B7</color>
-    <color name="color_srednio">#FDF7BF</color>
-    <color name="color_mocno">#FFDDAC</color>
+    <color name="color_zakazany">#F3DFDF</color>
+    <color name="color_malo">#E1FBE2</color>
+    <color name="color_srednio">#F4F2DE</color>
+    <color name="color_mocno">#FAEEDD</color>
 
 
 </resources>

@@ -12,7 +12,7 @@
     <dimen name="intro_text_size">16sp</dimen>
     <dimen name="btn_marginStartEnd">20dp</dimen>
     <dimen name="intro_screen_sign_in_btn_marginTop">50dp</dimen>
-    <dimen name="btn_paddingTopBottom">8dp</dimen>
+    <dimen name="btn_paddingTopBottom">5dp</dimen>
     <dimen name="intro_screen_sign_up_btn_marginTop">15dp</dimen>
     <dimen name="btn_text_size">18sp</dimen>
     <dimen name="sign_up_screen_btn_marginTop">30dp</dimen>
@@ -31,7 +31,18 @@
     <dimen name="progress_bar_size">50dp</dimen>
     <dimen name="progress_text_marginStart">16dp</dimen>
     <dimen name="progress_text_size">16sp</dimen>
-
+    <dimen name="dialog_member_cv_elevation">3dp</dimen>
+    <dimen name="dialog_member_cv_cornerRadius">3dp</dimen>
+    <dimen name="dialog_member_content_padding">10dp</dimen>
+    <dimen name="dialog_member_title_padding">5dp</dimen>
+    <dimen name="dialog_member_title_text_size">18sp</dimen>
+    <dimen name="member_dialog_divider_height">1dp</dimen>
+    <dimen name="member_dialog_divider_marginTopBottom">3dp</dimen>
+    <dimen name="member_dialog_til_email_marginTop">10dp</dimen>
+    <dimen name="member_dialog_action_layout_height">40dp</dimen>
+    <dimen name="member_dialog_action_layout_marginTop">10dp</dimen>
+    <dimen name="member_dialog_action_button_padding">10dp</dimen>
+    <dimen name="member_dialog_action_button_text_size">16sp</dimen>
     <dimen name="height_of_nav_main">200dp</dimen>
 
     <dimen name="nav_image_size">80dp</dimen>
@@ -62,7 +73,7 @@
     <dimen name="my_profile_et_mobile_marginTop">20dp</dimen>
 
     <dimen name="my_profile_btn_update_marginTop">30dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_margin">10dp</dimen>
 
     <dimen name="create_board_content_padding">16dp</dimen>
 
@@ -71,4 +82,5 @@
     <dimen name="create_board_til_marginTop">25dp</dimen>
 
     <dimen name="create_board_btn_marginTop">30dp</dimen>
+    <dimen name="rv_food_height">140dp</dimen>
 </resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".FoodActivity">
+    <item
+        android:id="@+id/action_add"
+        android:icon="@drawable/ic_vector_add_24dp"
+        android:orderInCategory="400"
+        android:title="Add meal"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_calendar"
+        android:icon="@drawable/ic_baseline_calendar_today_24"
+        android:orderInCategory="300"
+        android:title="Go to date"
+        app:showAsAction="ifRoom" />
+
+<!--    <item-->
+<!--        android:id="@+id/action_forward"-->
+<!--        android:icon="@drawable/ic_baseline_switch_right_24"-->
+<!--        android:orderInCategory="100"-->
+<!--        android:title="Next day"-->
+<!--        app:showAsAction="ifRoom" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/action_backward"-->
+<!--        android:icon="@drawable/ic_baseline_switch_left_24"-->
+<!--        android:orderInCategory="100"-->
+<!--        android:title="Previous day"-->
+<!--        app:showAsAction="ifRoom" />-->
+
+</menu>

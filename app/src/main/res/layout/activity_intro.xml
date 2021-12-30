@@ -107,4 +107,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/btn_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/btn_paddingTopBottom"
+        android:text="@string/remember_password"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/btn_sign_up_intro"
+        app:layout_constraintStart_toStartOf="@id/btn_sign_up_intro"
+        android:foreground="?attr/selectableItemBackground"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,5 +8,7 @@ object Constants {
     const val NAME: String = "name"
     const val MOBILE: String = "mobile"
     const val MEALS: String = "meals"
+    const val WELLBEING: String = "wellbeing"
+    const val SPECIALISTS: String = "specialists"
 
 }

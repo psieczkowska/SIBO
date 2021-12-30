@@ -79,6 +79,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/email"
+                        android:background="@color/white"
                         android:inputType="textEmailAddress"
                         android:textSize="12sp" />
 
@@ -95,6 +96,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/password"
+                        android:background="@color/white"
                         android:inputType="textPassword"
                         android:textSize="12sp" />
 

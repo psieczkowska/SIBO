@@ -83,4 +83,6 @@
 
     <dimen name="create_board_btn_marginTop">30dp</dimen>
     <dimen name="rv_food_height">140dp</dimen>
+    <dimen name="button_smile_size">75dp</dimen>
+    <dimen name="tv_rating_text_size">15sp</dimen>
 </resources>

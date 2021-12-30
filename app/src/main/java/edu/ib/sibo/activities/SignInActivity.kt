@@ -37,7 +37,6 @@ class SignInActivity : BaseActivity() {
     }
 
     fun signInSuccess(user: User) {
-        //hideProgressDialog()
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
@@ -65,11 +64,11 @@ class SignInActivity : BaseActivity() {
         fun validateForm(email: String, password: String): Boolean {
             return when {
                 TextUtils.isEmpty(email) -> {
-                    showErrorSnackBar("Please enter an email address")
+                    showErrorSnackBar("Wprowadź adres email")
                     false
                 }
                 TextUtils.isEmpty(password) -> {
-                    showErrorSnackBar("Please enter a password")
+                    showErrorSnackBar("Wprowadź hasło")
                     false
                 }
                 else -> {
@@ -84,15 +83,7 @@ class SignInActivity : BaseActivity() {
                 .addOnCompleteListener(this) { task ->
                     hideProgressDialog()
                     if (task.isSuccessful) {
-
-                        val user = auth.currentUser
-                        Toast.makeText(
-                            this,
-                            "you have succesfully signed in with the email address $email",
-                            Toast.LENGTH_SHORT
-                        ).show()
                         startActivity(Intent(this, MainActivity::class.java))
-
 
                     } else {
                         Toast.makeText(

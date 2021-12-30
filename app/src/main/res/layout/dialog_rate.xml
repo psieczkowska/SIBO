@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_dialog_rounded"
+        app:cardCornerRadius="@dimen/dialog_member_cv_cornerRadius"
+        app:cardElevation="@dimen/dialog_member_cv_elevation">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:orientation="horizontal"
+            android:padding="@dimen/btn_paddingTopBottom">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_close_rate"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:scaleType="center"
+                android:src="@drawable/ic_baseline_close_24" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/dialog_member_content_padding">
+
+            <TextView
+                android:id="@+id/tv_meal_wellbeing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/btn_paddingTopBottom"
+                android:text="@string/your_rate"
+                android:textSize="25dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/member_dialog_divider_height"
+                android:layout_marginTop="@dimen/member_dialog_divider_marginTopBottom"
+                android:layout_marginBottom="@dimen/member_dialog_divider_marginTopBottom"
+                android:background="@color/divider_color" />
+
+            <EditText
+                android:id="@+id/tv_name_and_surname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/member_dialog_divider_marginTopBottom"
+                android:focusable="false"
+                android:hint="@string/name"
+                android:inputType="none"
+                android:textSize="@dimen/et_text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="@string/choose_rate" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="15"
+                android:hint="@string/ocena"
+                android:inputType="text"
+                android:padding="@dimen/btn_paddingTopBottom" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/dark_grey"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"/>
+
+            <EditText
+                android:id="@+id/et_comment_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/comment"
+                android:inputType="textMultiLine"
+                android:maxLines="7"
+                android:padding="@dimen/btn_paddingTopBottom" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/member_dialog_action_layout_height"
+                android:layout_marginTop="@dimen/member_dialog_action_layout_marginTop"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btn_save_rate"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:padding="@dimen/member_dialog_action_button_padding"
+                    android:text="@string/save"
+                    android:textColor="@color/materialcolorpicker__green"
+                    android:textSize="@dimen/member_dialog_action_button_text_size" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

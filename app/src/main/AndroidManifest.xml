@@ -14,15 +14,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SIBO">
         <activity
+            android:name=".activities.PdfViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SIBO.NoActionBar">
+
+        </activity>
+        <activity android:name=".activities.ResetPasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SIBO.NoActionBar"/>
+        <activity
+            android:name=".activities.SpecialistDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SIBO.NoActionBar" />
+        <activity
             android:name=".activities.DoctorsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SIBO.NoActionBar" />
         <activity
-            android:name=".activities.FoodActivity"
+            android:name=".activities.AddSpecialistActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SIBO.NoActionBar" />
         <activity
-            android:name=".activities.AddProductActivity"
+            android:name=".activities.FoodActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.SIBO.NoActionBar" />
         <activity
@@ -54,8 +67,9 @@
         </activity>
         <activity
             android:name=".activities.MainActivity"
+            android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.SIBO.NoActionBar" />
+            android:theme="@style/Theme.SIBO.NoActionBar"></activity>
     </application>
 
 </manifest>

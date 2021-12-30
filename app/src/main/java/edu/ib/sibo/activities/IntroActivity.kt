@@ -31,6 +31,10 @@ class IntroActivity : BaseActivity() {
         btn_sign_in_intro.setOnClickListener {
             startActivity(Intent(this, SignInActivity::class.java))
         }
+
+        btn_password.setOnClickListener {
+            startActivity(Intent(this, ResetPasswordActivity::class.java))
+        }
     }
 
 

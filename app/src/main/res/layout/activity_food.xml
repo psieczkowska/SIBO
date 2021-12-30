@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:id="@+id/scroll_food">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -67,8 +68,8 @@
                         android:id="@+id/breakfast_smile"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:src="@drawable/smile_gray_28"
-                        />
+                        android:background="#FFFFFF"
+                        tools:src="@drawable/ic_smile_40" />
 
 
                 </LinearLayout>
@@ -120,7 +121,7 @@
                         android:id="@+id/lunch_smile"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:src="@drawable/smile_gray_28"
+                        android:src="@drawable/ic_smile_40"
                         />
 
 
@@ -172,7 +173,7 @@
                         android:id="@+id/dinner_smile"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:src="@drawable/smile_gray_28"
+                        android:src="@drawable/ic_smile_40"
                         />
 
 
@@ -225,7 +226,7 @@
                         android:id="@+id/snack_smile"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:src="@drawable/smile_gray_28"
+                        android:src="@drawable/ic_smile_40"
                         />
 
 
@@ -277,7 +278,7 @@
                         android:id="@+id/supper_smile"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:src="@drawable/smile_gray_28"
+                        android:src="@drawable/ic_smile_40"
                         />
 
 

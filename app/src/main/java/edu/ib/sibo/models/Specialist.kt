@@ -3,36 +3,30 @@ package edu.ib.sibo.models
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Meal(
+data class Specialist(
     val name: String = "",
-    val amount: String = "",
-    val date: String = "",
-    val time: String = "",
-    val color: String = "",
+    val surname: String = "",
     val type: String = "",
-    val userID: String = "",
+    val city: String = "",
+    val rating: ArrayList<Rate> = ArrayList(),
     val documentId: String = ""
-) : Parcelable {
+): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readString()!!,
-        parcel.readString()!!,
-        parcel.readString()!!,
+        parcel.createTypedArrayList(Rate.CREATOR)!!,
         parcel.readString()!!
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
-        parcel.writeString(amount)
-        parcel.writeString(date)
-        parcel.writeString(time)
-        parcel.writeString(color)
+        parcel.writeString(surname)
         parcel.writeString(type)
-        parcel.writeString(userID)
+        parcel.writeString(city)
+        parcel.writeTypedList(rating)
         parcel.writeString(documentId)
     }
 
@@ -40,12 +34,12 @@ data class Meal(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<Meal> {
-        override fun createFromParcel(parcel: Parcel): Meal {
-            return Meal(parcel)
+    companion object CREATOR : Parcelable.Creator<Specialist> {
+        override fun createFromParcel(parcel: Parcel): Specialist {
+            return Specialist(parcel)
         }
 
-        override fun newArray(size: Int): Array<Meal?> {
+        override fun newArray(size: Int): Array<Specialist?> {
             return arrayOfNulls(size)
         }
     }

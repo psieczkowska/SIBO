@@ -27,9 +27,6 @@ class SplashActivity : AppCompatActivity() {
             )
         }
 
-//        val typeFace: Typeface = Typeface.createFromAsset(assets, "Good Idea St.ttf")
-//        tv_app_name.typeface = typeFace
-
         Handler().postDelayed({
             var currentUserID = FirestoreClass().getCurrentUserId()
             if(currentUserID.isNotEmpty()){
@@ -37,7 +34,7 @@ class SplashActivity : AppCompatActivity() {
             } else {
             startActivity(Intent(this, IntroActivity::class.java)) }
             finish()
-        }, 2500)
+        }, 1500)
 
     }
 }

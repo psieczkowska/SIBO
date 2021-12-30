@@ -35,7 +35,7 @@ class SignUpActivity : BaseActivity() {
     fun userRegisteredSuccess() {
         Toast.makeText(
             this,
-            "you have succesfully registered ",
+            "Teraz możesz się zalogować",
             Toast.LENGTH_SHORT
         ).show()
         FirebaseAuth.getInstance().signOut()
@@ -66,15 +66,15 @@ class SignUpActivity : BaseActivity() {
         fun validateForm(name: String, email: String, password: String): Boolean {
             return when {
                 TextUtils.isEmpty(name) -> {
-                    showErrorSnackBar("Please enter a name")
+                    showErrorSnackBar("Wprowadź imię")
                     false
                 }
                 TextUtils.isEmpty(email) -> {
-                    showErrorSnackBar("Please enter an email address")
+                    showErrorSnackBar("Wprowadź adres email")
                     false
                 }
                 TextUtils.isEmpty(password) -> {
-                    showErrorSnackBar("Please enter a password")
+                    showErrorSnackBar("Wprowadź hasło")
                     false
                 }
                 else -> {

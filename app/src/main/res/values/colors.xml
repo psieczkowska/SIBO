@@ -13,6 +13,13 @@
     <color name="color_malo">#E1FBE2</color>
     <color name="color_srednio">#F4F2DE</color>
     <color name="color_mocno">#FAEEDD</color>
+    <color name="color_red">#DD2C00</color>
+    <color name="color_orange">#FFAB00</color>
+    <color name="color_yellow">#F7FF14</color>
+    <color name="color_green">#31CD37</color>
+    <color name="view_color">#F8BBD0</color>
+    <color name="list_background">#FBF6F7</color>
+    <color name="dark_grey">#6E6E6E</color>
 
 
 </resources>

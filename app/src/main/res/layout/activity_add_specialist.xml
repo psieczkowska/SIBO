@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/ic_background"
+    android:padding="15dp"
+    tools:context=".activities.AddSpecialistActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/btn_paddingTopBottom"
+        android:text="@string/add_specialist"
+        android:textSize="30dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/et_name_specialist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/list_background"
+            android:ems="10"
+            android:hint="@string/name"
+            android:inputType="textCapSentences" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/et_surname_specialist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/list_background"
+            android:ems="10"
+            android:hint="@string/surname"
+            android:inputType="textCapSentences" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/et_city_specialist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/list_background"
+            android:ems="10"
+            android:hint="@string/city"
+            android:inputType="textCapSentences" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/btn_paddingTopBottom"
+        android:text="@string/choose_type_specialist"
+        android:textSize="@dimen/et_text_size" />
+
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner_type_specialist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/list_background"
+        android:ems="15"
+        android:hint="@string/rodzaj"
+        android:inputType="text"
+        android:padding="@dimen/btn_paddingTopBottom" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background = "@color/dark_grey"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/btn_paddingTopBottom"
+        android:text="@string/choose_rate"
+        android:textSize="@dimen/et_text_size" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner_rate_specialist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/list_background"
+        android:ems="15"
+        android:hint="@string/ocena"
+        android:inputType="text"
+        android:padding="@dimen/btn_paddingTopBottom" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background = "@color/dark_grey">
+
+    </View>
+
+        <EditText
+            android:id="@+id/et_comment_specialist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/list_background"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/comment"
+            android:inputType="textMultiLine"
+            android:maxLines="3"
+            android:padding="@dimen/btn_paddingTopBottom" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/dark_grey" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_add_specialist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/btn_paddingTopBottom"
+            android:text="@string/add" />
+
+        <Button
+            android:id="@+id/btn_cancel_specialist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/btn_paddingTopBottom"
+            android:text="@string/cancel" />
+
+    </LinearLayout>
+</LinearLayout>

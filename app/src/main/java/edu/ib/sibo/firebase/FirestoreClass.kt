@@ -1,6 +1,8 @@
 package edu.ib.projectmanapp.firebase
 
 import android.app.Activity
+import android.content.ContentValues.TAG
+import android.content.res.Resources
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -11,6 +13,8 @@ import edu.ib.projectmanapp.utils.Constants
 import edu.ib.sibo.activities.*
 import edu.ib.sibo.models.Meal
 import edu.ib.sibo.models.Product
+import edu.ib.sibo.models.Specialist
+import edu.ib.sibo.models.Wellbeing
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -30,53 +34,88 @@ class FirestoreClass {
             }.addOnFailureListener { e ->
                 Log.e(
                     activity.javaClass.simpleName,
-                    "Error writing document"
+                    "Error while registering user"
                 )
             }
     }
 
-    fun registerProduct(activity: AddProductActivity, productInfo: Product) {
-        mFireStore.collection(Constants.PRODUCTS)
-            .add(productInfo)
-            .addOnSuccessListener {
-                Toast.makeText(activity, "Zrobione", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener { e ->
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error writing document"
-                )
-            }
-    }
 
-//    fun registerMeal(activity: FoodActivity, mealInfo: Meal) {
-//        mFireStore.collection(Constants.MEALS)
-//            .add(mealInfo)
-//            .addOnSuccessListener {
-//                Toast.makeText(activity, "Posiłek został dodany", Toast.LENGTH_SHORT).show()
-//            }.addOnFailureListener { e ->
-//                Log.e(
-//                    activity.javaClass.simpleName,
-//                    "Error writing document"
-//                )
-//            }
-//    }
-
-    fun createMeal(activity: FoodActivity, meal: Meal) {
-        mFireStore.collection(Constants.MEALS)
-            .document()
-            .set(meal, SetOptions.merge())
+    fun createSpecialist(activity: AddSpecialistActivity, specialist: Specialist) {
+        mFireStore.collection(Constants.SPECIALISTS)
+            .document(specialist.documentId)
+            .set(specialist, SetOptions.merge())
             .addOnSuccessListener {
                 Log.e(
                     activity.javaClass.simpleName,
-                    "Board created successfully"
+                    "Specialist created successfully"
                 )
-                Toast.makeText(activity, "Board created successfully", Toast.LENGTH_LONG).show()
-                activity.hideProgressDialog()
-                // TODO  activity.mealCreatedSuccessfully()
+                activity.specialistCreatedSuccessfully()
             }.addOnFailureListener { exception ->
                 activity.hideProgressDialog()
-                Log.e(activity.javaClass.simpleName, "Error while creating a board.", exception)
+                Log.e(activity.javaClass.simpleName, "Error while creating specialist", exception)
             }
+    }
+
+    fun updateSpecialist(activity: SpecialistDetailsActivity, specialist: Specialist) {
+        mFireStore.collection(Constants.SPECIALISTS)
+            .document(specialist.documentId)
+            .set(specialist, SetOptions.merge())
+            .addOnSuccessListener {
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Specialist updated successfully"
+                )
+                activity.hideProgressDialog()
+            }.addOnFailureListener { exception ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while updating specialist", exception)
+            }
+    }
+
+    fun getSpecialistsList(activity: DoctorsActivity) {
+        mFireStore.collection(Constants.SPECIALISTS)
+            .get()
+            .addOnSuccessListener { document ->
+                Log.i(activity.javaClass.simpleName, document.documents.toString())
+                val specialistList: ArrayList<Specialist> = ArrayList()
+                for (i in document.documents) {
+                    val specialist = i.toObject(Specialist::class.java)!!
+                    specialistList.add(specialist)
+                }
+                activity.populateSpecialistsListToUI(specialistList)
+            }.addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while getting specialist list")
+            }
+    }
+
+    fun createMeal(activity: Activity, meal: Meal) {
+        mFireStore.collection(Constants.MEALS)
+            .document(meal.documentId)
+            .set(meal)
+            .addOnSuccessListener {
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Meal created successfully"
+                )
+                Toast.makeText(
+                    activity,
+                    "Produkt ${meal.name} został dodany do posiłku",
+                    Toast.LENGTH_LONG
+                ).show()
+
+            }.addOnFailureListener { exception ->
+                if (activity is BaseActivity)
+                    activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while creating meal", exception)
+            }
+    }
+
+    fun deleteMeal(activity: FoodActivity, meal: Meal) {
+        mFireStore.collection(Constants.MEALS).document(meal.documentId)
+            .delete()
+            .addOnSuccessListener { Log.d(TAG, "Meal successfully deleted!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error deleting meal", e) }
     }
 
     fun getMealsList(activity: FoodActivity, date: String) {
@@ -94,7 +133,7 @@ class FirestoreClass {
                 activity.populateMealsListToUI(mealsList, date)
             }.addOnFailureListener { e ->
                 activity.hideProgressDialog()
-                Log.e(activity.javaClass.simpleName, "Error while creating a boards list")
+                Log.e(activity.javaClass.simpleName, "Error while getting meals list")
             }
     }
 
@@ -119,9 +158,7 @@ class FirestoreClass {
                 activity.profileUpdateSuccess()
             }.addOnFailureListener { e ->
                 activity.hideProgressDialog()
-                Log.e(activity.javaClass.simpleName, "Error while creating a board")
-                Toast.makeText(activity, "Error when updating the profile", Toast.LENGTH_SHORT)
-                    .show()
+                Log.e(activity.javaClass.simpleName, "Error while updating profile")
             }
     }
 
@@ -155,10 +192,7 @@ class FirestoreClass {
                         activity.hideProgressDialog()
                     }
                 }
-                Log.e(
-                    "FirestoreClassSignIn",
-                    "Error writing document"
-                )
+                Log.e(activity.javaClass.simpleName, "Error while loading user data")
             }
     }
 
@@ -166,29 +200,60 @@ class FirestoreClass {
     fun getProductsList(activity: MainActivity) {
         val productsList: ArrayList<Product> = ArrayList()
         mFireStore.collection(Constants.PRODUCTS)
-            .get() // Will get the documents snapshots.
+            .get()
             .addOnSuccessListener { document ->
-                // Here we get the list of boards in the form of documents.
+
                 Log.e(activity.javaClass.simpleName, document.documents.toString())
 
-
-                // A for loop as per the list of documents to convert them into Boards ArrayList.
                 for (i in document.documents) {
 
                     val product = i.toObject(Product::class.java)!!
-                    //board.documentId = i.id
+
 
                     productsList.add(product)
                 }
-
-                // Here pass the result to the base activity.
                 activity.populateProductsListToUI(productsList)
             }
             .addOnFailureListener { e ->
 
                 activity.hideProgressDialog()
-                Log.e(activity.javaClass.simpleName, "Error while creating a board.", e)
+                Log.e(activity.javaClass.simpleName, "Error while getting products list.", e)
             }
 
+    }
+
+    fun getWellbeingList(activity: FoodActivity, date: String) {
+        mFireStore.collection(Constants.WELLBEING)
+            .whereEqualTo("user", getCurrentUserId())
+            .get()
+            .addOnSuccessListener { document ->
+                Log.i(activity.javaClass.simpleName, document.documents.toString())
+                val wellbeingList: ArrayList<Wellbeing> = ArrayList()
+                for (i in document.documents) {
+                    val wellbeing = i.toObject(Wellbeing::class.java)!!
+                    wellbeingList.add(wellbeing)
+                }
+
+                activity.populateWellBeingListToUI(wellbeingList, date)
+            }.addOnFailureListener { e ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while getting wellbeing list")
+            }
+    }
+
+    fun createWellbeing(activity: FoodActivity, wellbeing: Wellbeing) {
+        mFireStore.collection(Constants.WELLBEING)
+            .document(wellbeing.documentId)
+            .set(wellbeing, SetOptions.merge())
+            .addOnSuccessListener {
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Wellbeing created successfully"
+                )
+                activity.hideProgressDialog()
+            }.addOnFailureListener { exception ->
+                activity.hideProgressDialog()
+                Log.e(activity.javaClass.simpleName, "Error while creating a wellbeing.", exception)
+            }
     }
 }

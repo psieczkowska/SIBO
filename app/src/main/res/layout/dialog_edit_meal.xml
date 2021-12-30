@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -25,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dialog_member_title_padding"
-                android:text="@string/add_meal"
+                android:text="@string/edit_meal"
                 android:textColor="@color/primary_text_color"
                 android:textSize="@dimen/dialog_member_title_text_size"
                 android:textStyle="bold" />
@@ -39,7 +38,7 @@
 
 
             <EditText
-                android:id="@+id/et_meal_date"
+                android:id="@+id/et_meal_date_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/member_dialog_divider_marginTopBottom"
@@ -49,7 +48,7 @@
                 android:textSize="@dimen/et_text_size" />
 
             <EditText
-                android:id="@+id/et_meal_time"
+                android:id="@+id/et_meal_time_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/member_dialog_divider_marginTopBottom"
@@ -60,9 +59,10 @@
 
 
             <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/meal_spinner"
+                android:id="@+id/meal_spinner_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 />
 
             <View
@@ -75,7 +75,7 @@
 
 
             <EditText
-                android:id="@+id/et_meal_name"
+                android:id="@+id/et_meal_name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/member_dialog_divider_marginTopBottom"
@@ -85,7 +85,7 @@
 
 
             <EditText
-                android:id="@+id/et_meal_amount"
+                android:id="@+id/et_meal_amount_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/member_dialog_divider_marginTopBottom"
@@ -96,10 +96,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:gravity="center_horizontal"
+                android:orientation="vertical"
                 android:padding="@dimen/btn_paddingTopBottom">
-
 
 
                 <TextView
@@ -109,7 +108,7 @@
                     android:text="@string/choose_color" />
 
                 <View
-                    android:id="@+id/color_meal_view"
+                    android:id="@+id/color_meal_view_edit"
                     android:layout_width="150dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
@@ -124,19 +123,31 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_add"
+                    android:id="@+id/tv_save_edit_meal"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:padding="@dimen/member_dialog_action_button_padding"
-                    android:text="@string/add"
-                    android:textColor="@color/colorAccent"
+                    android:text="@string/save"
+                    android:textColor="@color/materialcolorpicker__green"
                     android:textSize="@dimen/member_dialog_action_button_text_size" />
 
                 <TextView
-                    android:id="@+id/tv_cancel"
+                    android:id="@+id/tv_delete_edit_meal"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:padding="@dimen/member_dialog_action_button_padding"
+                    android:text="@string/delete"
+                    android:textColor="@color/materialcolorpicker__red"
+                    android:textSize="@dimen/member_dialog_action_button_text_size" />
+
+                <TextView
+                    android:id="@+id/tv_cancel_edit_meal"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

@@ -1,25 +1,20 @@
 package edu.ib.sibo.activities
 
 import android.app.Dialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.SearchView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import edu.ib.projectmanapp.firebase.FirestoreClass
 import edu.ib.sibo.R
-import edu.ib.sibo.adapters.ProductItemsAdapter
 import edu.ib.sibo.adapters.RateItemsAdapter
 import edu.ib.sibo.models.Rate
 import edu.ib.sibo.models.Specialist
-import edu.ib.sibo.models.Wellbeing
 import kotlinx.android.synthetic.main.activity_add_specialist.*
 import kotlinx.android.synthetic.main.activity_specialist_details.*
 import kotlinx.android.synthetic.main.dialog_rate.*
 import kotlinx.android.synthetic.main.dialog_smile.*
-import kotlinx.android.synthetic.main.dialog_smile.tv_meal_wellbeing
 import kotlinx.android.synthetic.main.item_specialist.view.*
 import kotlinx.android.synthetic.main.main_content.*
 
@@ -92,7 +87,7 @@ class SpecialistDetailsActivity : BaseActivity() {
                 specialist.name,
                 specialist.surname,
                 specialist.type,
-                specialist.city,
+                specialist.address,
                 newRateList,
                 specialist.documentId
             )
@@ -112,7 +107,7 @@ class SpecialistDetailsActivity : BaseActivity() {
     fun populateRatingListToUI(specialist: Specialist) {
         var value = 0
         var ratesList = specialist.rating
-        tv_specialist_city.text = specialist.city
+        tv_specialist_city.text = specialist.address
         tv_specialist_name.text = specialist.name
         tv_specialist_surname.text = specialist.surname
         tv_specialist_type.text = specialist.type

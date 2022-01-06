@@ -7,7 +7,7 @@ data class Specialist(
     val name: String = "",
     val surname: String = "",
     val type: String = "",
-    val city: String = "",
+    val address: String = "",
     val rating: ArrayList<Rate> = ArrayList(),
     val documentId: String = ""
 ): Parcelable {
@@ -25,7 +25,7 @@ data class Specialist(
         parcel.writeString(name)
         parcel.writeString(surname)
         parcel.writeString(type)
-        parcel.writeString(city)
+        parcel.writeString(address)
         parcel.writeTypedList(rating)
         parcel.writeString(documentId)
     }

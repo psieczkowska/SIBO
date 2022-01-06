@@ -55,4 +55,6 @@
     <string name="reset_password_text">Podaj adres e-mail przypisany do konta</string>
     <string name="search_hint">Wyszukaj</string>
     <string name="instruction">Instrukcja (PDF)</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="dropped_pin">Wybrane miejsce</string>
 </resources>

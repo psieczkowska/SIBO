@@ -61,7 +61,7 @@
             android:layout_gravity="center"
             android:background="@color/list_background"
             android:ems="10"
-            android:hint="@string/city"
+            android:hint="Adres"
             android:inputType="textCapSentences" />
     </com.google.android.material.textfield.TextInputLayout>
 

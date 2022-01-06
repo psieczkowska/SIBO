@@ -19,8 +19,8 @@ class ResetPasswordActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reset_password)
-        auth = Firebase.auth
         setupActionBar()
+        auth = Firebase.auth
         btn_reset.setOnClickListener {
             val emailAddress = et_email_reset.text.toString()
 

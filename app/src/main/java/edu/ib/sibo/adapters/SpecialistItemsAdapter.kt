@@ -6,10 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import edu.ib.sibo.R
-import edu.ib.sibo.models.Meal
-import edu.ib.sibo.models.Product
 import edu.ib.sibo.models.Specialist
-import kotlinx.android.synthetic.main.item_meal.view.*
 import kotlinx.android.synthetic.main.item_specialist.view.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -36,7 +33,7 @@ class SpecialistItemsAdapter(
         if (holder is MyViewHolder) {
             holder.itemView.tv_specialist_name.text = model.name
             holder.itemView.tv_specialist_surname.text = model.surname
-            holder.itemView.tv_specialist_city.text = model.city
+            holder.itemView.tv_specialist_city.text = model.address
 
             for (i in model.rating) {
                 value += i.rate
@@ -65,7 +62,7 @@ class SpecialistItemsAdapter(
         } else {
             textLow = text.toLowerCase(Locale.ROOT)
             for (item in listCopy) {
-                if (item.name.toLowerCase(Locale.ROOT).contains(textLow) || item.city.toLowerCase(
+                if (item.name.toLowerCase(Locale.ROOT).contains(textLow) || item.address.toLowerCase(
                         Locale.ROOT
                     ).contains(textLow) || item.surname.toLowerCase(Locale.ROOT).contains(textLow)
                 ) {

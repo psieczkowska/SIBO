@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import edu.ib.projectmanapp.firebase.FirestoreClass
@@ -29,6 +30,7 @@ class DoctorsActivity : BaseActivity() {
         menuInflater.inflate(R.menu.search_in_toolbar, menu)
 
         val myActionMenuItem = menu!!.findItem(R.id.action_search)
+        val mapActionItem = menu!!.findItem(R.id.action_map)
         val searchView = myActionMenuItem.actionView as androidx.appcompat.widget.SearchView
 
         searchView.setOnQueryTextListener(
@@ -45,7 +47,25 @@ class DoctorsActivity : BaseActivity() {
             }
         )
 
+
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+
+        val id = item.itemId
+
+        when (id) {
+            R.id.action_map -> {
+                val intent = Intent(this, MapsActivity::class.java)
+                intent.putExtra("specialistList", mSpecialistList)
+                startActivity(intent)
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -23,6 +23,7 @@ class DoctorsActivity : BaseActivity() {
     companion object {
         const val SPECIALIST_DETAILS_REQUEST_CODE: Int = 2
         const val ADD_SPECIALIST_REQUEST_CODE: Int = 3
+        const val MAPS_ACTIVITY_REQUEST_CODE: Int = 4
     }
 
 
@@ -60,13 +61,18 @@ class DoctorsActivity : BaseActivity() {
             R.id.action_map -> {
                 val intent = Intent(this, MapsActivity::class.java)
                 intent.putExtra("specialistList", mSpecialistList)
-                startActivity(intent)
+                showProgressDialog(resources.getString(R.string.please_wait))
+//                startActivity(intent)
+                startActivityForResult(intent, MAPS_ACTIVITY_REQUEST_CODE);
+
+
                 return true
             }
         }
 
         return super.onOptionsItemSelected(item)
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -123,6 +129,11 @@ class DoctorsActivity : BaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK && requestCode == MAPS_ACTIVITY_REQUEST_CODE) {
+            hideProgressDialog();
+           // finish();
+        }
 
         if (resultCode == Activity.RESULT_OK && requestCode == ADD_SPECIALIST_REQUEST_CODE) {
             FirestoreClass().getSpecialistsList(this)

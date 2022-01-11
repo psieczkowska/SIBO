@@ -20,7 +20,7 @@
             android:padding="@dimen/dialog_member_content_padding">
 
             <TextView
-                android:id="@+id/tvDialogTitle"
+                android:id="@+id/tvDialogTitle_"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dialog_member_title_padding"

@@ -1,12 +1,11 @@
 package edu.ib.sibo.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import edu.ib.sibo.R
 import kotlinx.android.synthetic.main.activity_pdf_view.*
 
-class PdfViewActivity : AppCompatActivity() {
+class PdfViewActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pdf_view)

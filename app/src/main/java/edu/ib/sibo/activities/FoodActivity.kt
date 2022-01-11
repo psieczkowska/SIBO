@@ -65,25 +65,24 @@ class FoodActivity : BaseActivity(), GestureDetector.OnGestureListener {
         }
         showProgressDialog(getString(R.string.please_wait))
         FirestoreClass().getMealsList(this, formattedDate)
-        FirestoreClass().getWellbeingList(this, formattedDate)
         breakfast_smile.setOnClickListener {
-            dialogSetWellbeing("Śniadanie", formattedDate)
+            dialogSetWellbeing("Śniadanie", toolbar!!.title.toString())
         }
 
         lunch_smile.setOnClickListener {
-            dialogSetWellbeing("II śniadanie", formattedDate)
+            dialogSetWellbeing("II śniadanie", toolbar!!.title.toString())
         }
 
         dinner_smile.setOnClickListener {
-            dialogSetWellbeing("Obiad", formattedDate)
+            dialogSetWellbeing("Obiad", toolbar!!.title.toString())
         }
 
         snack_smile.setOnClickListener {
-            dialogSetWellbeing("Podwieczorek", formattedDate)
+            dialogSetWellbeing("Podwieczorek", toolbar!!.title.toString())
         }
 
         supper_smile.setOnClickListener {
-            dialogSetWellbeing("Kolacja", formattedDate)
+            dialogSetWellbeing("Kolacja", toolbar!!.title.toString())
         }
 
         val scrollView: ScrollView = findViewById(R.id.scroll_food)
@@ -114,8 +113,16 @@ class FoodActivity : BaseActivity(), GestureDetector.OnGestureListener {
                 picker = DatePickerDialog(
                     this@FoodActivity,
                     { view, yearN, monthOfYear, dayOfMonth ->
+                        var monthOfYearN = ""
+
+                        if (monthOfYear.toString().length == 1) {
+                            var monthOfYearO = 1 + monthOfYear
+                            monthOfYearN = "0$monthOfYearO"
+                        } else {
+                            monthOfYearN = (monthOfYear + 1).toString()
+                        }
                         formattedDate =
-                            dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + yearN
+                            dayOfMonth.toString() + "/" + (monthOfYearN) + "/" + yearN
                         showProgressDialog(getString(R.string.please_wait))
                         FirestoreClass().getMealsList(this, formattedDate)
                         FirestoreClass().getWellbeingList(this, formattedDate)
@@ -210,7 +217,15 @@ class FoodActivity : BaseActivity(), GestureDetector.OnGestureListener {
         dialog.et_meal_date.setOnClickListener(View.OnClickListener {
             picker = DatePickerDialog(
                 this@FoodActivity,
-                { view, year, monthOfYear, dayOfMonth -> dialog.et_meal_date.setText(dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year) },
+                { view, year, monthOfYear, dayOfMonth ->
+                    var monthOfYearN = "0"
+                    if (monthOfYear.toString().length == 1) {
+                        monthOfYearN = "0${monthOfYear + 1}"
+                    } else {
+                        monthOfYearN = (monthOfYear + 1).toString()
+                    }
+                    dialog.et_meal_date.setText(dayOfMonth.toString() + "/" + (monthOfYearN) + "/" + year)
+                },
                 year,
                 month,
                 day
@@ -307,7 +322,7 @@ class FoodActivity : BaseActivity(), GestureDetector.OnGestureListener {
         var dinnerList: ArrayList<Meal> = ArrayList()
         var snackList: ArrayList<Meal> = ArrayList()
         var supperList: ArrayList<Meal> = ArrayList()
-
+        FirestoreClass().getWellbeingList(this, date)
         if (mealsList.size > 0) {
             for (i in mealsList) {
                 if (i.date == date) {
@@ -454,7 +469,24 @@ class FoodActivity : BaseActivity(), GestureDetector.OnGestureListener {
             "Podwieczorek",
             "Kolacja"
         )
+
         val spin = dialog.meal_spinner_edit
+        if (model.type == "Śniadanie") {
+            spin.post(Runnable { spin.setSelection(0) })
+        }
+        if (model.type == "II śniadanie") {
+            spin.post(Runnable { spin.setSelection(1) })
+        }
+        if (model.type == "Obiad") {
+            spin.post(Runnable { spin.setSelection(2) })
+        }
+        if (model.type == "Podwieczorek") {
+            spin.post(Runnable { spin.setSelection(3) })
+        }
+        if (model.type == "Kolacja") {
+            spin.post(Runnable { spin.setSelection(4) })
+        }
+
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
             this,
             android.R.layout.simple_spinner_item,
@@ -466,22 +498,36 @@ class FoodActivity : BaseActivity(), GestureDetector.OnGestureListener {
         dialog.et_meal_date_edit.setInputType(InputType.TYPE_NULL)
         val cldr: Calendar = Calendar.getInstance()
         val day: Int = model.date.split("/")[0].toInt()
-        val month: Int = model.date.split("/")[1].toInt() - 1
+        var month: Int = model.date.split("/")[1].toInt()
+        var monthN = ""
+        if (month.toString().length == 1) {
+            monthN = "0$month"
+        }
         val year: Int = model.date.split("/")[2].toInt()
 
-        dialog.et_meal_date_edit.setText(model.date)
-        dialog.et_meal_date_edit.setOnClickListener(View.OnClickListener {
-            // date picker dialog
+        dialog.et_meal_date_edit.setText("$day/$monthN/$year")
+        dialog.et_meal_date_edit.setOnClickListener(
+            View.OnClickListener {
+                // date picker dialog
 
-            picker = DatePickerDialog(
-                this@FoodActivity,
-                { view, year, monthOfYear, dayOfMonth -> dialog.et_meal_date_edit.setText(dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year) },
-                year,
-                month,
-                day
-            )
-            picker.show()
-        })
+                picker = DatePickerDialog(
+                    this@FoodActivity,
+                    { view, year, monthOfYear, dayOfMonth ->
+                        var monthOfYearN = "0"
+                        if (monthOfYear.toString().length == 1) {
+                            monthOfYearN = "0${monthOfYear + 1}"
+                        } else {
+                            monthOfYearN = (monthOfYear + 1).toString()
+                        }
+                        dialog.et_meal_date_edit.setText(dayOfMonth.toString() + "/" + (monthOfYearN) + "/" + year)
+                    },
+
+                    year,
+                    month,
+                    day
+                )
+                picker.show()
+            })
 
         val hour: Int = model.time.split(":")[0].toInt()
         val minute: Int = model.time.split(":")[1].toInt()
@@ -506,7 +552,7 @@ class FoodActivity : BaseActivity(), GestureDetector.OnGestureListener {
             }, hour, minute, true)
             pickerT.show()
         }
-        dialog.et_meal_date_edit.setText(day.toString() + "/" + (month + 1).toString() + "/" + year.toString())
+        //dialog.et_meal_date_edit.setText(day.toString() + "/" + (monthN + 1).toString() + "/" + year.toString())
         if (hour.toString().length == 1) {
             hourString = "0$hour"
         } else {
@@ -534,6 +580,8 @@ class FoodActivity : BaseActivity(), GestureDetector.OnGestureListener {
         var userID = getCurrentUserID()
         var documentID: String = model.documentId
         var meal = model
+        dialog.tv_save_edit_meal.setOnClickListener {
+        }
         dialog.tv_save_edit_meal.setOnClickListener {
 
             name = dialog.et_meal_name_edit.text.toString()
@@ -579,7 +627,8 @@ class FoodActivity : BaseActivity(), GestureDetector.OnGestureListener {
                 pickerC.dismiss()
             })
         }
-        dialog.tv_delete_edit_meal.setOnClickListener {
+        dialog.tv_delete_edit_meal.setOnClickListener()
+        {
             FirestoreClass().deleteMeal(this, meal)
             FirestoreClass().getMealsList(this@FoodActivity, formattedDate)
             showProgressDialog(resources.getString(R.string.please_wait))

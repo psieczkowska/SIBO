@@ -10,7 +10,6 @@ import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -24,11 +23,9 @@ import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.net.PlacesClient
 import edu.ib.sibo.R
 import edu.ib.sibo.models.Specialist
-import java.util.*
-import kotlin.collections.ArrayList
 
 
-class MapsActivity : AppCompatActivity(), GoogleMap.OnInfoWindowClickListener, OnMapReadyCallback {
+class MapsActivity : BaseActivity(), GoogleMap.OnInfoWindowClickListener, OnMapReadyCallback {
 
 
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -52,7 +49,6 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnInfoWindowClickListener, O
         setContentView(R.layout.activity_maps)
         Places.initialize(getApplicationContext(), getString(R.string.google_maps_key));
         placesClient = Places.createClient(this);
-
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -66,7 +62,7 @@ class MapsActivity : AppCompatActivity(), GoogleMap.OnInfoWindowClickListener, O
         getLocationPermission()
         updateLocationUI()
         getDeviceLocation()
-
+        setResult(RESULT_OK, Intent())
         mList = intent.getParcelableArrayListExtra<Specialist>("specialistList")!!
         if (mList != null) {
             populateSpecialistToMap(mList)

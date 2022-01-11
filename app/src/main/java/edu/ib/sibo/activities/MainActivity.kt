@@ -230,12 +230,26 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val day: Int = cldr.get(Calendar.DAY_OF_MONTH)
         val month: Int = cldr.get(Calendar.MONTH) + 1
         val year: Int = cldr.get(Calendar.YEAR)
+        var monthO = ""
+        if(month.toString().length == 1){
+            monthO = "0$month"
+        } else {
+            monthO = month.toString()
+        }
+        dialog.et_meal_date.setText("$day/$monthO/$year")
         dialog.et_meal_date.setOnClickListener(View.OnClickListener {
             picker = DatePickerDialog(
                 this@MainActivity,
-                { view, year, monthOfYear, dayOfMonth -> dialog.et_meal_date.setText(dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year) },
+                { view, yearN, monthOfYear, dayOfMonth ->
+                    var monthOfYearN = "0"
+                    if (monthOfYear.toString().length == 1) {
+                        monthOfYearN = "0${monthOfYear + 1}"
+                    } else {
+                        monthOfYearN = (monthOfYear + 1).toString()
+                    }
+                    dialog.et_meal_date.setText(dayOfMonth.toString() + "/" + (monthOfYearN ) + "/" + yearN) },
                 year,
-                month,
+                month - 1,
                 day
             )
             picker.show()
@@ -262,7 +276,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }, hour, minute, true)
             pickerT.show()
         }
-        dialog.et_meal_date.setText("$day/$month/$year")
+
         if (hour.toString().length == 1) {
             hourString = "0$hour"
         } else {
